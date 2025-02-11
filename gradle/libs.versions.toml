@@ -2,6 +2,7 @@
 agp = "8.7.3"
 coilCompose = "3.1.0"
 constraintlayoutCompose = "1.1.0"
+coreSplashscreen = "1.0.1"
 foundation = "1.7.7"
 githubGlide = "4.15.1"
 glide = "4.15.1"
@@ -26,6 +27,7 @@ firebaseDatabase = "21.0.0"
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "xaccompanistPagerIndicators" }
 androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "foundation" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 github-glide = { module = "com.github.bumptech.glide:glide", version.ref = "githubGlide" }
