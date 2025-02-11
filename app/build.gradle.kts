@@ -58,6 +58,7 @@ android {
         implementation(libs.gson)
         implementation(libs.androidx.constraintlayout.compose)
         implementation(libs.androidx.foundation)
+        implementation(libs.androidx.core.splashscreen)
 
     }
 }
