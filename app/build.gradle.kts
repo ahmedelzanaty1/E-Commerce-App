@@ -54,11 +54,13 @@ android {
         implementation(libs.xaccompanist.pager.indicators)
         implementation(libs.accompanist.pager) // Check for the l implementation ("androidx.Lifecycle:Lifecycle-runtime-ktx:2.x.x")
         implementation(libs.runtime.livedata)
-        implementation (libs.github.glide)
         implementation(libs.gson)
         implementation(libs.androidx.constraintlayout.compose)
         implementation(libs.androidx.foundation)
         implementation(libs.androidx.core.splashscreen)
+        implementation (libs.glide.v4160)
+
+        implementation (libs.picasso)
 
     }
 }
