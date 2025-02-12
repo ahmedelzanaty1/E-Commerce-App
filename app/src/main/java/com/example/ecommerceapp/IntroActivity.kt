@@ -1,5 +1,6 @@
 package com.example.ecommerceapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -41,7 +42,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             ECommerceAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    IntroActivity(onClick = {} , modifier = Modifier.padding(innerPadding))
+                    IntroActivity(onClick = {
+                        startActivity(Intent(this,HomeActivity::class.java))
+                    } , modifier = Modifier.padding(innerPadding))
 
                 }
             }

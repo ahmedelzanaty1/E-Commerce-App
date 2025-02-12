@@ -4,7 +4,7 @@
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_intro">IntroActivity</string>
     <string name="intro_title">
-        Welcome to <font color="#6200EE">Digital Store </font> /n
+        Welcome to <font color="#6200EE">Digital Store </font> 
         GateWay to the Latest Technology
 </string>
     <string name="intro_subtitle">
@@ -15,4 +15,5 @@
     <string name="sign">
         Already have an account? <font color="#6200EE">Sign in</font>
     </string>
+    <string name="title_activity_home">HomeActivity</string>
 </resources>
