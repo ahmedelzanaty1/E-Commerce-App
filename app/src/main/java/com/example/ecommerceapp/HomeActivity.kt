@@ -58,12 +58,17 @@ fun HomeActivityScreen(modifier: Modifier = Modifier) {
     val categories by viewModel.categories.observeAsState(emptyList())
     val isLoadingBanner = remember { mutableStateOf(true) }
     val isLoadingCategories = remember { mutableStateOf(true) }
+    val recommended by viewModel.recommended.observeAsState(mutableListOf())
 
     LaunchedEffect(Unit) {
         viewModel.loadbanner()
         isLoadingBanner.value = false
         viewModel.LoadCategories()
         isLoadingCategories.value = false
+        viewModel.loadrecommended()
+
+
+
     }
 
     ConstraintLayout(
