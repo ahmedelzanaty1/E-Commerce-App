@@ -1,4 +1,4 @@
-package com.example.ecommerceapp.Utils
+package com.example.ecommerceapp
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -12,7 +12,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.ecommerceapp.R
 
 @Composable
 fun SectionTitle(title : String , actionTitle : String) {

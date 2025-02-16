@@ -4,15 +4,15 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class ItemModel(
-    var title : String = "",
-    var description : String = "",
-    var picUrl : ArrayList<String> = arrayListOf(),
-    var model : ArrayList<String> = arrayListOf(),
-    var price : Double = 0.0,
-    var rating : Double = 0.0,
-    var numberInCart : Int = 0,
-    var showRecommended : Boolean = false ,
-    var categoryId : String = ""
+    var title: String = "",
+    var description: String = "",
+    var picUrl: ArrayList<String> = arrayListOf(),
+    var model: ArrayList<String> = arrayListOf(),
+    var price: Double = 0.0,
+    var rating: Double = 0.0,
+    var numberInCart: Int = 0,
+    var showRecommended: Boolean = false,
+    var categoryId: String? = ""
 ): Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
@@ -23,7 +23,7 @@ data class ItemModel(
         parcel.readDouble(),
         parcel.readInt(),
         parcel.readByte() != 0.toByte(),
-        parcel.readString().toString()
+        parcel.readString()
     ) {
     }
 
