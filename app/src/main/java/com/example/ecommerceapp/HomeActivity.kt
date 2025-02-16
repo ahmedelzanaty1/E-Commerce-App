@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.example.ecommerceapp.Utils.SectionTitle
 import com.example.ecommerceapp.ViewModel.HomeViewModel
 import com.example.ecommerceapp.model.SliderModel
 import com.example.ecommerceapp.ui.theme.ECommerceAppTheme

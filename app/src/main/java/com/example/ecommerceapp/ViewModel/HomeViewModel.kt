@@ -1,5 +1,6 @@
 package com.example.ecommerceapp.ViewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -80,18 +81,21 @@ class HomeViewModel : ViewModel() {
         query.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val lists = mutableListOf<ItemModel>()
-                for (snap in snapshot.children){
-                    for (snap2 in snap.children){
-                        val data = snap2.getValue(ItemModel::class.java)
+                for (snap in snapshot.children) {
+                    try {
+                        val data = snap.getValue(ItemModel::class.java)
                         if (data != null) {
                             lists.add(data)
+                        } else {
+                            Log.e("FirebaseError", "Failed to convert snapshot: ${snap.value}")
                         }
-
+                    } catch (e: Exception) {
+                        Log.e("FirebaseError", "Error converting data: ${e.message}")
                     }
                 }
                 _recommended.value = lists
-
             }
+
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
