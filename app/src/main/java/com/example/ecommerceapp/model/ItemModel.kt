@@ -6,7 +6,7 @@ import android.os.Parcelable
 data class ItemModel(
     var title: String = "",
     var description: String = "",
-    var picUrl: ArrayList<String> = arrayListOf(),
+    var picUrl:     ArrayList<String> = arrayListOf(),
     var model: ArrayList<String> = arrayListOf(),
     var price: Double = 0.0,
     var rating: Double = 0.0,
@@ -17,7 +17,7 @@ data class ItemModel(
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.createStringArrayList() as ArrayList<String>,
+        parcel.createStringArrayList() ?: arrayListOf(),
         parcel.createStringArrayList() as ArrayList<String>,
         parcel.readDouble(),
         parcel.readDouble(),

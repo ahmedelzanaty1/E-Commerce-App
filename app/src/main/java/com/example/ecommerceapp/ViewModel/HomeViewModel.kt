@@ -75,10 +75,10 @@ class HomeViewModel : ViewModel() {
             }
         })
     }
-    fun loadrecommended(){
+    fun loadrecommended() {
         val ref = firebase.getReference("Items")
-        val query : Query = ref.orderByChild("showRecommended").equalTo(true)
-        query.addListenerForSingleValueEvent(object : ValueEventListener{
+        val query: Query = ref.orderByChild("showRecommended").equalTo(true)
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val lists = mutableListOf<ItemModel>()
                 for (snap in snapshot.children) {
@@ -86,6 +86,7 @@ class HomeViewModel : ViewModel() {
                         val data = snap.getValue(ItemModel::class.java)
                         if (data != null) {
                             lists.add(data)
+                            Log.d("FirebaseData", "Loaded Item: ${data.title}, Image URL: ${data.picUrl}")
                         } else {
                             Log.e("FirebaseError", "Failed to convert snapshot: ${snap.value}")
                         }
@@ -96,14 +97,12 @@ class HomeViewModel : ViewModel() {
                 _recommended.value = lists
             }
 
-
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Log.e("FirebaseError", "Error loading recommended items: ${error.message}")
             }
-
         })
-
     }
+
 
 }
 

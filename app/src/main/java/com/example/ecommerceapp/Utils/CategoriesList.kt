@@ -95,4 +95,5 @@ fun LoadImageWithPicasso(url: String?, isSelected: Boolean) {
                 shape = RoundedCornerShape(8.dp)
             )
     )
+
 }

@@ -58,6 +58,7 @@ fun HomeActivityScreen(modifier: Modifier = Modifier) {
     val isLoadingBanner = remember { mutableStateOf(true) }
     val isLoadingCategories = remember { mutableStateOf(true) }
     val recommended by viewModel.recommended.observeAsState(mutableListOf())
+    val isLoadingRecommended = remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
         viewModel.loadbanner()
@@ -65,8 +66,11 @@ fun HomeActivityScreen(modifier: Modifier = Modifier) {
         viewModel.LoadCategories()
         isLoadingCategories.value = false
         viewModel.loadrecommended()
-
-
+        viewModel.recommended.observeForever {
+            recommended.clear()
+            recommended.addAll(it)
+            isLoadingRecommended.value = false
+        }
 
     }
 
@@ -96,6 +100,27 @@ fun HomeActivityScreen(modifier: Modifier = Modifier) {
             }
             item {
                 if (isLoadingCategories.value) LoadingIndicator(height = 50.dp) else CategoriesList(categories)
+            }
+            item {
+                SectionTitle("recommendations", "See All")
+            }
+            item {
+                if(isLoadingRecommended.value){
+                    Box (
+                        modifier = Modifier.fillMaxWidth()
+                            .height(200.dp)
+                        , contentAlignment = Alignment.Center
+                    ){
+                        CircularProgressIndicator()
+                    }
+                }else{
+                    ItemList(items = recommended )
+
+                }
+            }
+            item {
+                Spacer(modifier = Modifier.height(100.dp)
+                )
             }
         }
     }
