@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,15 +43,14 @@ fun ItemList(items: List<ItemModel>) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                ItemCard(items, index)
+                ItemCard(item = items[index], pos = index)
             }
         }
     }
 }
 
 @Composable
-fun ItemCard(items: List<ItemModel>, pos: Int) {
-    val item = items[pos]
+fun ItemCard(item: ItemModel, pos: Int) {
 
     Column(
         modifier = Modifier.padding(8.dp).height(255.dp)
@@ -64,8 +64,8 @@ fun ItemCard(items: List<ItemModel>, pos: Int) {
             ),
             contentDescription = "Item Image",
             modifier = Modifier
-                .width(50.dp)
-                .height(50.dp)
+                .width(200.dp)
+                .height(200.dp)
                 .background(colorResource(R.color.lightgray), shape = RoundedCornerShape(10.dp))
                 .padding(7.dp)
                 .clickable { }
@@ -102,6 +102,9 @@ fun ItemCard(items: List<ItemModel>, pos: Int) {
                     color = colorResource(R.color.purple),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold
+                        , textAlign = TextAlign.End
+                    , modifier = Modifier.fillMaxWidth()
+
                 )
             }
         }

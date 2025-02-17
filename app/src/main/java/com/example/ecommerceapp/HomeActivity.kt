@@ -67,8 +67,6 @@ fun HomeActivityScreen(modifier: Modifier = Modifier) {
         isLoadingCategories.value = false
         viewModel.loadrecommended()
         viewModel.recommended.observeForever {
-            recommended.clear()
-            recommended.addAll(it)
             isLoadingRecommended.value = false
         }
 
