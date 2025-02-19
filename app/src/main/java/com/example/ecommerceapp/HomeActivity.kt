@@ -2,6 +2,7 @@ package com.example.ecommerceapp
 
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -12,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -33,25 +35,59 @@ import com.example.ecommerceapp.model.SliderModel
 import com.example.ecommerceapp.ui.theme.ECommerceAppTheme
 import com.example.ecommerceapp.utils.CategoriesList
 import com.google.accompanist.pager.*
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.delay
 
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             ECommerceAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomeActivityScreen(modifier = Modifier.padding(innerPadding))
+                AppBar(color = MaterialTheme.colorScheme.background)
+                Scaffold(modifier = Modifier.fillMaxSize()
+                    ,bottomBar = {
+                        BottomNavigationBar(
+                            onItemClick = {item ->
+                                when(item.icon){
+                                    R.drawable.btn_1 -> {
+                                        Toast.makeText(this, "Explore", Toast.LENGTH_SHORT).show()
+                                    }
+                                    R.drawable.btn_2 -> {
+                                        Toast.makeText(this, "Cart", Toast.LENGTH_SHORT).show()
+                                    }
+                                    R.drawable.btn_3 -> {
+                                        Toast.makeText(this, "Favorite", Toast.LENGTH_SHORT).show()
+                                    }
+                                    R.drawable.btn_4 -> {
+                                        Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
+                                    }
+                                    R.drawable.btn_5 -> {
+                                        Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
+
+                                    }
+                                }
+
+                            }
+                            , bottomItems = bottomNavItems
+                        )
+                    }
+                ) { innerPadding ->
+                    HomeActivityScreen(modifier = Modifier.padding(innerPadding).fillMaxSize())
                 }
             }
         }
+    }
+    @Composable
+    private fun AppBar(color : Color){
+        val appBar = rememberSystemUiController()
+        appBar.setStatusBarColor(color)
     }
 }
 
 @Composable
 fun HomeActivityScreen(modifier: Modifier = Modifier) {
+
     val viewModel = remember { HomeViewModel() }
     val banner by viewModel.banner.observeAsState(emptyList())
     val categories by viewModel.categories.observeAsState(emptyList())
