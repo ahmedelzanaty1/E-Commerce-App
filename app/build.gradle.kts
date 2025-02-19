@@ -53,6 +53,7 @@ android {
         implementation(libs.xaccompanist.pager.indicators)
         implementation(libs.coil.compose)
         implementation(libs.coil.network.okhttp)
+        implementation (libs.accompanist.systemuicontroller)
         implementation(libs.accompanist.pager) // Check for the l implementation ("androidx.Lifecycle:Lifecycle-runtime-ktx:2.x.x")
         implementation(libs.runtime.livedata)
         implementation(libs.gson)
