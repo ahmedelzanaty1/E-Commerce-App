@@ -102,6 +102,36 @@ class HomeViewModel : ViewModel() {
             }
         })
     }
+    fun loadfiltered() {
+        val ref = firebase.getReference("Items")
+        val query: Query = ref.orderByChild("categoryId").equalTo(true)
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val lists = mutableListOf<ItemModel>()
+                for (snap in snapshot.children) {
+                    try {
+                        val data = snap.getValue(ItemModel::class.java)
+                        if (data != null) {
+                            lists.add(data)
+                            Log.d(
+                                "FirebaseData",
+                                "Loaded Item: ${data.title}, Image URL: ${data.picUrl}"
+                            )
+                        } else {
+                            Log.e("FirebaseError", "Failed to convert snapshot: ${snap.value}")
+                        }
+                    } catch (e: Exception) {
+                        Log.e("FirebaseError", "Error converting data: ${e.message}")
+                    }
+                }
+                _recommended.value = lists
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("FirebaseError", "Error loading recommended items: ${error.message}")
+            }
+        })
+    }
 
 
 }
