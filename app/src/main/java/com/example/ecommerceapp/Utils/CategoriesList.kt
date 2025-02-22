@@ -1,5 +1,8 @@
 package com.example.ecommerceapp.utils
 
+import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.ImageView
 import androidx.compose.foundation.background
@@ -9,19 +12,23 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.example.ecommerceapp.ListItemsActivity
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.model.CategoriesModel
 import com.squareup.picasso.Picasso
 
 @Composable
-fun CategoriesList(categories: List<CategoriesModel>) {
+fun CategoriesList(categories: SnapshotStateList<CategoriesModel>) {
     val selectedIndex = remember { mutableStateOf(-1) }
+    val context = LocalContext.current
 
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
@@ -32,7 +39,17 @@ fun CategoriesList(categories: List<CategoriesModel>) {
             CategoryItem(
                 item = categories[index],
                 isSelected = selectedIndex.value == index,
-                onClick = { selectedIndex.value = index }
+                onClick = { selectedIndex.value = index
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            val intent = Intent(context, ListItemsActivity::class.java).apply {
+                                putExtra("id", categories[index].id)
+                                putExtra("title", categories[index].title)
+                            }
+                            context.startActivity(intent)
+
+
+                        },1000)
+                }
             )
         }
     }
