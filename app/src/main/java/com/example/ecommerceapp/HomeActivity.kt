@@ -133,7 +133,9 @@ fun HomeActivityScreen(modifier: Modifier = Modifier) {
                 SectionTitle("Categories", "See All")
             }
             item {
-                if (isLoadingCategories.value) LoadingIndicator(height = 50.dp) else CategoriesList(categories)
+                if (isLoadingCategories.value) LoadingIndicator(height = 50.dp) else CategoriesList(
+                    categories.toMutableStateList()
+                )
             }
             item {
                 SectionTitle("recommendations", "See All")
